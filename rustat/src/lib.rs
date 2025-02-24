@@ -18,10 +18,20 @@ impl test_class {
 
 /// Formats the sum of two numbers as string.
 #[pyfunction]
-fn test_func(a: usize, b: usize) -> PyResult<String> {
-    println!("Gello Gorld!");
+fn test_func(py: Python<'_>, a: u64) -> PyResult<u64> {
+    let count = py.allow_threads(|| count_to(a));
+    println!("AHHHHHHHHHHH");
     
-    Ok((a + b).to_string())
+    Ok(count)
+}
+
+fn count_to (a: u64) -> u64 {
+    let mut count = 0u64;
+    for _ in (0..a) {
+        count += 1u64;
+    }
+    
+    count
 }
 
 /// A Python module implemented in Rust.
