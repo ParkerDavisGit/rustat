@@ -4,28 +4,26 @@ use std::sync::Mutex;
 use std::thread;
 
 #[pyclass]
-struct test_class {
+struct TestClass {
     count: Arc<Mutex<u64>>,
 }
 
 #[pymethods]
-impl test_class {
+impl TestClass {
     #[new]
-    fn new(value: u64) -> Self {
-        println!("Made with {}", value);
-        test_class { count: Arc::new(Mutex::new(0u64)), }
+    fn new() -> Self {
+        //println!("Made with {}", value);
+        TestClass { count: Arc::new(Mutex::new(0u64)), }
     }
 
     fn run(&self, value: u64) {
-        println!("Hi!");
-        
         let the_ref = self.count.clone();
         thread::spawn(move || {
             for _ in 0..value {
                 let mut data = the_ref.lock().unwrap();
                 *data += 1u64;
             }
-            println!("done!");
+            //println!("done!");
         });
     }
 
@@ -57,6 +55,6 @@ impl test_class {
 #[pymodule]
 fn rustat(m: &Bound<'_, PyModule>) -> PyResult<()> {
     //m.add_function(wrap_pyfunction!(test_func, m)?)?;
-    m.add_class::<test_class>()?;
+    m.add_class::<TestClass>()?;
     Ok(())
 }
