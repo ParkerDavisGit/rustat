@@ -6,7 +6,7 @@ from rustat import TestClass
 
 temp = TestClass()
 
-amount = 1_000_000_000
+amount = 2_000_000_00
 step = amount / 25
 next_step = step
 
@@ -22,7 +22,11 @@ while percent_done < 100:
         percent_done += 4
         print("#", end="")
         sys.stdout.flush()
-        #print(f"{percent_done}% - {temp.get_count()}", end="")
+    
     time.sleep(.017)
+
 print("]")
 print(f"  Finished counting to {amount}!")
+
+temp.set_in_dict("test1", 27)
+print(temp.get_from_dict("test1"))
