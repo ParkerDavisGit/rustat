@@ -1,10 +1,10 @@
 import sys
 import time
-from rustat import TestClass
+import rustat
 
 #print(test_func(1_000_000_000))
 
-temp = TestClass()
+temp = rustat.load_file("test_prices")
 
 amount = 2_000_000_00
 step = amount / 25

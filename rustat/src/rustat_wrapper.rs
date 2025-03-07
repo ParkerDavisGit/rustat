@@ -9,6 +9,7 @@ use std::thread;
 
 #[pyclass]
 pub struct TestClass {
+    file_name: String,
     count: Arc<Mutex<u64>>,
     dict: HashMap<String, usize>,
 }
@@ -16,9 +17,13 @@ pub struct TestClass {
 #[pymethods]
 impl TestClass {
     #[new]
-    fn new() -> Self {
+    pub fn new(file_name: String) -> Self {
         //println!("Made with {}", value);
-        TestClass { count: Arc::new(Mutex::new(0u64)), dict: HashMap::new() }
+        TestClass { 
+            file_name: file_name, 
+            count: Arc::new(Mutex::new(0u64)), 
+            dict: HashMap::new() 
+        }
     }
 
     fn run(&self, value: u64) {
@@ -29,7 +34,7 @@ impl TestClass {
     }
 
     fn get_count(&self) -> u64{
-        *self.count.lock().unwrap()
+        *self.count.lock().unwrap();
     }
 
     fn set_in_dict(&mut self, key: String, value: usize) {
