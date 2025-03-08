@@ -1,5 +1,7 @@
 use pyo3::prelude::*;
+
 mod rustat_wrapper;
+pub mod graphs;
 
 #[pyfunction]
 fn load_file(file_name: String) -> rustat_wrapper::TestClass {
