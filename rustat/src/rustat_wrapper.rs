@@ -20,7 +20,7 @@ pub struct TestClass {
 impl TestClass {
     #[new]
     pub fn new(file_name: String) -> Self {
-        TestClass { 
+        TestClass {
             file_name: file_name, 
             count: Arc::new(Mutex::new(0u64)), 
             dict: HashMap::new(),
@@ -33,7 +33,6 @@ impl TestClass {
         thread::spawn(move || {
             counter(value, the_ref);
         });
-        self.plot.get_render_data();
     }
 
     fn get_count(&self) -> u64{

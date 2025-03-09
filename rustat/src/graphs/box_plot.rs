@@ -28,4 +28,10 @@ impl Graph for BoxPlot {
         println!("o");
         vec
     }
+
+    fn get_supported_operations(&self) -> Vec<&str> {
+        vec![
+            "render"
+        ]
+    }
 }

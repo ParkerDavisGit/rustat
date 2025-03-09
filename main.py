@@ -6,7 +6,7 @@ import rustat
 
 temp = rustat.load_file("test_prices")
 
-amount = 2_000
+amount = 1_000_000_000
 step = amount / 25
 next_step = step
 
